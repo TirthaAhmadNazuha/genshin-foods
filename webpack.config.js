@@ -34,12 +34,22 @@ module.exports = () => {
     if (isProduction) {
         config.mode = 'production'
         config.target = ['web', 'es5']
+        config.module.rules.push({
+            test: /\.(js|jsx)$/i,
+            loader: 'babel-loader',
+            options: {
+                presets: ['@babel/preset-react', '@babel/preset-env'],
+            },
+        })
     } else {
         config.mode = 'development'
         config.target = 'web'
         config.module.rules.push({
             test: /\.(js|jsx)$/i,
             loader: 'babel-loader',
+            options: {
+                presets: ['@babel/preset-react'],
+            },
         })
     }
     return config

@@ -3,6 +3,7 @@ import router from './router.js'
 import logo from '../../dist/assets/images/genshin-impact-logo.png'
 import imageHero from './component/imagehero.js'
 import minWidthImageHero from '../../dist/assets/images/foods-hero.png'
+import foods from './component/foods.js'
 const main = () => {
     router.AppDiv.innerHTML = ''
     if (window.location.pathname == '/') {
@@ -26,7 +27,6 @@ const main = () => {
         }, 300)
     }
     const wideScreenHeroImgChangein = () => {
-        console.log('Resized')
         if (window.innerWidth <= 768) {
             const elem = document.createElement('img')
             elem.src = minWidthImageHero
@@ -50,5 +50,26 @@ const main = () => {
             }
         }, 300)
     }
+    foods.all().then((data) => {
+        foods.all = data
+        foods.modifiy()
+        for (let i = 15; i <= 45; i++) {
+            const imgRowItemIndex = document.createElement('img')
+            imgRowItemIndex.src = `https://api.genshin.dev/consumables/food/${
+                foods.key.food()[i]
+            }`
+            imgRowItemIndex.style.height = '200px'
+            $('.row-item .con').append(imgRowItemIndex)
+        }
+        window.onscroll = () => {
+            if (location.pathname == '/' && scrollY > $('.hero').height() / 2) {
+                document.querySelector(
+                    '.row-item .con'
+                ).style.transform = `translate(-${
+                    scrollY - $('.hero').height() / 2
+                }px)`
+            }
+        }
+    })
 }
 export default main
