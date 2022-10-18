@@ -1,23 +1,13 @@
-import $ from 'jquery'
-import router from './router.js'
-import logo from '../../dist/assets/images/genshin-impact-logo.png'
+import logo from '../assets/genshin-logo.png'
 import imageHero from './component/imagehero.js'
-import minWidthImageHero from '../../dist/assets/images/foods-hero.png'
+import minWidthImageHero from '../assets/hero-foods-img.png'
 import foods from './component/foods.js'
 const main = () => {
-    router.AppDiv.innerHTML = ''
-    if (window.location.pathname == '/') {
-        router.AppDiv.innerHTML = router.routes[window.location.pathname]
-    } else router.AppDiv.appendChild(router.routes[window.location.pathname])
-    router.popState()
-    $('.nav button').on('click', (e) => {
-        router.onNavigate(e.target.getAttribute('to'))
-    })
     const NavImageLogo = document.createElement('img')
     NavImageLogo.src = logo
     NavImageLogo.style.height = '80px'
     NavImageLogo.style.filter = 'brightness(0)'
-    $('nav.nav').append(NavImageLogo)
+    document.querySelector('.nav').append(NavImageLogo)
     window.onload = () => {
         setTimeout(() => {
             const imageHero = document.querySelectorAll('.hero .image img')
@@ -32,10 +22,10 @@ const main = () => {
             elem.src = minWidthImageHero
             elem.classList.add('w-full')
             document.querySelector('.hero .image').innerHTML = ''
-            $('.hero .image').append(elem)
-        } else {
-            document.querySelector('.hero .image').innerHTML = ''
-            $('.hero .image').append(imageHero)
+            document.querySelector('.hero .image').append(elem)
+        }
+        if (window.innerWidth > 768) {
+            document.querySelector('.hero .image').innerHTML = imageHero
         }
     }
     wideScreenHeroImgChangein()
@@ -59,14 +49,15 @@ const main = () => {
                 foods.key.food()[i]
             }`
             imgRowItemIndex.style.height = '200px'
-            $('.row-item .con').append(imgRowItemIndex)
+            document.querySelector('.row-item .con').append(imgRowItemIndex)
         }
         window.onscroll = () => {
-            if (location.pathname == '/' && scrollY > $('.hero').height() / 2) {
+            const hero = document.querySelector('.hero')
+            if (scrollY > hero.clientHeight / 2) {
                 document.querySelector(
                     '.row-item .con'
                 ).style.transform = `translate(-${
-                    scrollY - $('.hero').height() / 2
+                    scrollY - hero.clientHeight / 2
                 }px)`
             }
         }

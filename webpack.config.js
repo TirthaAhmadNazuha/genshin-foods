@@ -38,18 +38,18 @@ module.exports = () => {
             test: /\.(js|jsx)$/i,
             loader: 'babel-loader',
             options: {
-                presets: ['@babel/preset-react', '@babel/preset-env'],
+                presets: ['@babel/preset-env'],
             },
         })
+        config.optimization = {
+            usedExports: false,
+        }
     } else {
         config.mode = 'development'
         config.target = 'web'
         config.module.rules.push({
             test: /\.(js|jsx)$/i,
             loader: 'babel-loader',
-            options: {
-                presets: ['@babel/preset-react'],
-            },
         })
     }
     return config
