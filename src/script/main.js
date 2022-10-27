@@ -1,20 +1,16 @@
-import logo from '../assets/genshin-logo.png'
 import imageHero from './component/imagehero.js'
+import router from './router.js'
 import minWidthImageHero from '../assets/hero-foods-img.png'
 import foods from './component/foods.js'
 const main = () => {
-    const NavImageLogo = document.createElement('img')
-    NavImageLogo.src = logo
-    NavImageLogo.style.height = '80px'
-    NavImageLogo.style.filter = 'brightness(0)'
-    document.querySelector('.nav').append(NavImageLogo)
-    window.onload = () => {
-        setTimeout(() => {
-            const imageHero = document.querySelectorAll('.hero .image img')
-            imageHero.forEach((img) => {
-                img.setAttribute('style', 'transition: 300ms ease;')
-            })
-        }, 300)
+    router.popState()
+    if (location.pathname == '/') {
+        const startedBtn = document.querySelectorAll('.GetStarted')
+        startedBtn.forEach((btn) => {
+            btn.onclick = () => {
+                router.onNavigate('/home')
+            }
+        })
     }
     const wideScreenHeroImgChangein = () => {
         if (window.innerWidth <= 768) {
@@ -30,7 +26,7 @@ const main = () => {
     }
     wideScreenHeroImgChangein()
     window.onresize = () => {
-        wideScreenHeroImgChangein()
+        window.location.pathname == '/' && wideScreenHeroImgChangein()
         setTimeout(() => {
             if (window.innerWidth > 768) {
                 const imageHero = document.querySelectorAll('.hero .image img')
@@ -51,14 +47,23 @@ const main = () => {
             imgRowItemIndex.style.height = '200px'
             document.querySelector('.row-item .con').append(imgRowItemIndex)
         }
+        foods.key.food().forEach((key) => {
+            const arr = foods.all[0]
+            const elem = document.createElement('item-page')
+            elem.item = arr[key]
+            router.routes[`/${key}`] = elem
+        })
         window.onscroll = () => {
-            const hero = document.querySelector('.hero')
-            if (scrollY > hero.clientHeight / 2) {
-                document.querySelector(
-                    '.row-item .con'
-                ).style.transform = `translate(-${
-                    scrollY - hero.clientHeight / 2
-                }px)`
+            if (window.location.pathname == '/') {
+                console.log('window scroling')
+                const hero = document.querySelector('.hero')
+                if (scrollY > hero.clientHeight / 2) {
+                    document.querySelector(
+                        '.row-item .con'
+                    ).style.transform = `translate(-${
+                        scrollY - hero.clientHeight / 2
+                    }px)`
+                }
             }
         }
     })

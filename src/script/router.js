@@ -1,13 +1,18 @@
 const router = {
     AppDiv: document.querySelector('.App'),
     routes: {
-        '/': document.querySelector('.App').innerHTML,
+        '/': document.createElement('index-page'),
         '/home': document.createElement('home-page'),
         '/user': document.createElement('user-page'),
+        '/favorite': document.createElement('favorite-page'),
     },
     popState: () => {
         window.onpopstate = () => {
-            AppDiv.innerHTML = router.routes[window.location.pathname]
+            document.querySelector('.App').innerHTML = ''
+            document
+                .querySelector('.App')
+                .append(router.routes[window.location.pathname])
+            location.pathname == '/' && location.reload()
         }
     },
     onNavigate: (pathname) => {
@@ -17,9 +22,7 @@ const router = {
             window.location.origin + pathname
         )
         router.AppDiv.innerHTML = ''
-        if (pathname == '/') {
-            router.AppDiv.innerHTML = router.routes[pathname]
-        } else router.AppDiv.appendChild(router.routes[pathname])
+        router.AppDiv.append(router.routes[pathname])
     },
 }
 export default router

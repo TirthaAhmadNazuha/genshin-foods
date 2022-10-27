@@ -2,7 +2,8 @@
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
 
-@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400&family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200');
+
 * {
     margin: 0;
     padding: 0;
@@ -23,64 +24,15 @@ h2 {
 h3 {
     font-size: 1.7em;
 }
-.star-rarity {
-    display: inline-block;
+.material-symbols-outlined {
+    font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 40;
 }
-.star-rarity-4 {
-    clip-path: polygon(
-        0 0,
-        calc(100% - 33.4px) 0,
-        calc(100% - 33.4px) 100%,
-        0 100%
-    );
-    shape-outside: polygon(
-        0 0,
-        calc(100% - 33.4px) 0,
-        calc(100% - 33.4px) 100%,
-        0 100%
-    );
+.bottomNav .on .material-symbols-outlined {
+    font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 40;
 }
-.star-rarity-3 {
-    clip-path: polygon(
-        0 0,
-        calc(100% - (33.4px * 2)) 0,
-        calc(100% - (33.4px * 2)) 100%,
-        0 100%
-    );
-    shape-outside: polygon(
-        0 0,
-        calc(100% - (33.4px * 2)) 0,
-        calc(100% - (33.4px * 2)) 100%,
-        0 100%
-    );
-}
-.star-rarity-2 {
-    clip-path: polygon(
-        0 0,
-        calc(100% - (33.4px * 3)) 0,
-        calc(100% - (33.4px * 3)) 100%,
-        0 100%
-    );
-    shape-outside: polygon(
-        0 0,
-        calc(100% - (33.4px * 3)) 0,
-        calc(100% - (33.4px * 3)) 100%,
-        0 100%
-    );
-}
-.star-rarity-1 {
-    clip-path: polygon(
-        0 0,
-        calc(100% - (33.4px * 4)) 0,
-        calc(100% - (33.4px * 4)) 100%,
-        0 100%
-    );
-    shape-outside: polygon(
-        0 0,
-        calc(100% - (33.4px * 4)) 0,
-        calc(100% - (33.4px * 4)) 100%,
-        0 100%
-    );
+.add-favorite.saved .material-symbols-outlined {
+    font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 40;
+    color: red;
 }
 #logo {
     display: flex;

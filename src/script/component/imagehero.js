@@ -1,6 +1,6 @@
 const imageHero = `
 <img
-    class="absolute top-24 left-56 rotate-90 scale-90"
+    class="absolute w-[60%] top-24 left-56 rotate-90 scale-90"
     style="
         opacity: 0;
         top: 250px;
@@ -11,7 +11,7 @@ const imageHero = `
     alt=""
     />
     <img
-    class="absolute top-36 left-72 rotate-90"
+    class="absolute w-[60%] top-36 left-72 rotate-90"
     style="
         opacity: 0;
         top: 250px;
@@ -22,7 +22,7 @@ const imageHero = `
     alt=""
     />
     <img
-    class="absolute top-28 left-24 scale-75 rotate-12"
+    class="absolute w-[60%] top-28 left-24 scale-75 rotate-12"
     style="
         opacity: 0;
         top: 250px;
@@ -33,7 +33,7 @@ const imageHero = `
     alt=""
     />
     <img
-    class="absolute top-44 left-40 scale-75 rotate-12"
+    class="absolute w-[60%] top-44 left-40 scale-75 rotate-12"
     style="
         opacity: 0;
         top: 250px;
@@ -44,7 +44,7 @@ const imageHero = `
     alt=""
     />
     <img
-    class="absolute top-32 -left-8 rotate-6 scale-75"
+    class="absolute w-[60%] top-32 -left-8 rotate-6 scale-75"
     style="
         opacity: 0;
         top: 250px;
@@ -55,7 +55,7 @@ const imageHero = `
     alt=""
     />
     <img
-    class="absolute top-48 left-72 rotate-12 scale-75"
+    class="absolute w-[60%] top-48 left-72 rotate-12 scale-75"
     style="
         opacity: 0;
         top: 250px;
@@ -66,7 +66,7 @@ const imageHero = `
     alt=""
     />
     <img
-    class="absolute top-52 left-4 scale-90 -rotate-12"
+    class="absolute w-[60%] top-52 left-4 scale-90 -rotate-12"
     style="
         opacity: 0;
         top: 250px;
@@ -77,7 +77,7 @@ const imageHero = `
     alt=""
     />
     <img
-    class="absolute top-72 left-20 scale-110 -rotate-12"
+    class="absolute w-[60%] top-72 left-20 scale-110 -rotate-12"
     style="
         opacity: 0;
         top: 250px;
@@ -88,7 +88,7 @@ const imageHero = `
     alt=""
     />
     <img
-    class="absolute top-72 left-60 scale-110 rotate-12"
+    class="absolute w-[60%] top-72 left-60 scale-110 rotate-12"
     style="
         opacity: 0;
         top: 250px;

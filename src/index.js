@@ -1,6 +1,12 @@
 import './style.css'
 import 'regenerator-runtime'
 import main from './script/main.js'
+import './script/pages/indexpage.js'
 import './script/pages/homepage.js'
 import './script/pages/userpage.js'
+import './script/pages/favoritepage.js'
+import './script/component/foodsList.js'
+import './script/component/foodelem.js'
+import './script/component/botomnav.js'
+import './script/pages/itempage.js'
 document.addEventListener('DOMContentLoaded', main)
