@@ -5,10 +5,8 @@ class FavoritePage extends HTMLElement {
         super()
     }
     connectedCallback() {
-        if (window.location.pathname == '/favorite') {
-            this.setAttribute('class', 'block')
-            this.render()
-        }
+        this.setAttribute('class', 'block')
+        this.render()
     }
     render() {
         this.innerHTML = `

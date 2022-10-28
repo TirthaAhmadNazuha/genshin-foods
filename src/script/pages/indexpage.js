@@ -1,4 +1,8 @@
 import logo from '../../assets/genshin-logo.png'
+import minWidthImageHero from '../../assets/hero-foods-img.png'
+import router from '../router'
+import foods from '../component/foods'
+import imageHero from '../component/imagehero'
 class IndexPage extends HTMLElement {
     connectedCallback() {
         this.render()
@@ -135,6 +139,71 @@ class IndexPage extends HTMLElement {
                     img.setAttribute('style', 'transition: 300ms ease;')
                 })
             }, 300)
+        }
+        const wideScreenHeroImgChangein = () => {
+            if (window.innerWidth <= 768) {
+                const elem = document.createElement('img')
+                elem.src = minWidthImageHero
+                elem.classList.add('w-full')
+                document.querySelector('.hero .image').innerHTML = ''
+                document.querySelector('.hero .image').append(elem)
+            }
+            if (window.innerWidth > 768) {
+                document.querySelector('.hero .image').innerHTML = imageHero
+            }
+        }
+        wideScreenHeroImgChangein()
+        window.onresize = () => {
+            window.location.pathname == '/' && wideScreenHeroImgChangein()
+            setTimeout(() => {
+                if (window.innerWidth > 768) {
+                    const imageHero =
+                        document.querySelectorAll('.hero .image img')
+                    imageHero.forEach((img) => {
+                        img.setAttribute('style', 'transition: 300ms ease;')
+                    })
+                }
+            }, 300)
+        }
+        if (foods.key.food() && foods.key.food().length) {
+            for (let i = 15; i <= 45; i++) {
+                const imgRowItemIndex = document.createElement('img')
+                imgRowItemIndex.src = `https://api.genshin.dev/consumables/food/${
+                    foods.key.food()[i]
+                }`
+                imgRowItemIndex.style.height = '200px'
+                document.querySelector('.row-item .con').append(imgRowItemIndex)
+            }
+        } else {
+            foods.all().then((data) => {
+                foods.all = data
+                for (let i = 15; i <= 45; i++) {
+                    const imgRowItemIndex = document.createElement('img')
+                    imgRowItemIndex.src = `https://api.genshin.dev/consumables/food/${
+                        foods.key.food()[i]
+                    }`
+                    imgRowItemIndex.style.height = '200px'
+                    document
+                        .querySelector('.row-item .con')
+                        .append(imgRowItemIndex)
+                }
+            })
+        }
+        const startedBtn = document.querySelectorAll('.GetStarted')
+        startedBtn.forEach((btn) => {
+            btn.onclick = () => {
+                router.onNavigate('/home')
+            }
+        })
+        window.onscroll = () => {
+            const hero = document.querySelector('.hero')
+            if (scrollY > hero.clientHeight / 2) {
+                document.querySelector(
+                    '.row-item .con'
+                ).style.transform = `translate(-${
+                    scrollY - hero.clientHeight / 2
+                }px)`
+            }
         }
     }
 }

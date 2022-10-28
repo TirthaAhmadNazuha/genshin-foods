@@ -49,13 +49,14 @@ class ItemPage extends HTMLElement {
                 JSON.stringify(favoriteItem)
             )
         }
-        JSON.parse(window.localStorage.getItem('favorite-item')).forEach(
-            (item) => {
-                if (foods.all[this._food.image].name == item.name) {
-                    foods.all[this._food.image].favorite = item.favorite
+        JSON.parse(window.localStorage.getItem('favorite-item')) &&
+            JSON.parse(window.localStorage.getItem('favorite-item')).forEach(
+                (item) => {
+                    if (foods.all[this._food.image].name == item.name) {
+                        foods.all[this._food.image].favorite = item.favorite
+                    }
                 }
-            }
-        )
+            )
         if (foods.all[this._food.image].favorite) {
             this.querySelector('.add-favorite').classList.add('saved')
         } else this.querySelector('.add-favorite').classList.remove('saved')

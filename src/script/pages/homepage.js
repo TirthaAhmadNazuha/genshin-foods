@@ -35,82 +35,75 @@ class HomePage extends HTMLElement {
             <div class="container w-full pb-28"></div>
         </main>
         `
-        if (window.location.pathname == '/home') {
-            const func = (data) => {
-                const foodListElem = document.createElement('food-list')
-                foodListElem.foods = data
-                document.querySelector('.App main .container').innerHTML = ''
-                document
-                    .querySelector('.App main .container')
-                    .append(foodListElem)
-            }
-            if (Array.isArray(foods.arr())) {
+        const func = (data) => {
+            const foodListElem = document.createElement('food-list')
+            foodListElem.foods = data
+            document.querySelector('.App main .container').innerHTML = ''
+            document.querySelector('.App main .container').append(foodListElem)
+        }
+        if (Array.isArray(foods.arr())) {
+            func(foods.arr(true))
+        } else {
+            foods.all().then((data) => {
+                foods.all = data
                 func(foods.arr(true))
-            } else {
-                foods.all().then((data) => {
-                    foods.all = data
-                    func(foods.arr(true))
-                })
-            }
-            this.querySelector('nav button').onclick = () =>
-                router.onNavigate('/favorite')
-            window.scroll(0, 0)
-            let windowSrcollBeforeValue = 0
-            let topHeaderInScrolling = 0
-            window.onscroll = () => {
-                if (windowSrcollBeforeValue < window.scrollY) {
-                    topHeaderInScrolling +=
-                        window.scrollY - windowSrcollBeforeValue
-                    if (topHeaderInScrolling > 184) topHeaderInScrolling = 184
-                    document.querySelector(
-                        'header'
-                    ).style.top = `-${topHeaderInScrolling}px`
-                    windowSrcollBeforeValue = window.scrollY
-                } else if (windowSrcollBeforeValue > window.scrollY) {
-                    topHeaderInScrolling +=
-                        window.scrollY - windowSrcollBeforeValue
-                    if (topHeaderInScrolling < 106) topHeaderInScrolling = 106
-                    document.querySelector(
-                        'header'
-                    ).style.top = `-${topHeaderInScrolling}px`
-                    windowSrcollBeforeValue = window.scrollY
-                }
-            }
-            const searchBoxForm = document.querySelector('.search-box')
-            searchBoxForm.addEventListener('submit', (e) => {
-                e.preventDefault()
-                e.target[0].blur()
-                document.querySelector('.filtered-list-result').innerHTML = ''
-                func(foods.arrFiltered(e.target[0].value))
-                window.scroll(0, 0)
-            })
-            document
-                .querySelector('.search-box input')
-                .addEventListener('keyup', (e) => {
-                    const value = e.target.value
-                    const filteredListResult = document.querySelector(
-                        '.filtered-list-result'
-                    )
-                    filteredListResult.innerHTML = ''
-                    if (value.length > 2) {
-                        const result = foods.filtered(value)
-                        result.forEach((item) => {
-                            const list = document.createElement('li')
-                            list.setAttribute('class', 'p-3 w-full')
-                            list.innerHTML = item
-                            list.addEventListener('click', () => {
-                                document.querySelector(
-                                    '.search-box input'
-                                ).value = item
-                            })
-                            filteredListResult.append(list)
-                        })
-                    }
-                })
-            document.querySelector('header').addEventListener('blur', () => {
-                document.querySelector('.filtered-list-result').innerHTML = ''
             })
         }
+        this.querySelector('nav button').onclick = () =>
+            router.onNavigate('/favorite')
+        window.scroll(0, 0)
+        let windowSrcollBeforeValue = 0
+        let topHeaderInScrolling = 0
+        window.onscroll = () => {
+            if (windowSrcollBeforeValue < window.scrollY) {
+                topHeaderInScrolling += window.scrollY - windowSrcollBeforeValue
+                if (topHeaderInScrolling > 184) topHeaderInScrolling = 184
+                document.querySelector(
+                    'header'
+                ).style.top = `-${topHeaderInScrolling}px`
+                windowSrcollBeforeValue = window.scrollY
+            } else if (windowSrcollBeforeValue > window.scrollY) {
+                topHeaderInScrolling += window.scrollY - windowSrcollBeforeValue
+                if (topHeaderInScrolling < 106) topHeaderInScrolling = 106
+                document.querySelector(
+                    'header'
+                ).style.top = `-${topHeaderInScrolling}px`
+                windowSrcollBeforeValue = window.scrollY
+            }
+        }
+        const searchBoxForm = document.querySelector('.search-box')
+        searchBoxForm.addEventListener('submit', (e) => {
+            e.preventDefault()
+            e.target[0].blur()
+            document.querySelector('.filtered-list-result').innerHTML = ''
+            func(foods.arrFiltered(e.target[0].value))
+            window.scroll(0, 0)
+        })
+        document
+            .querySelector('.search-box input')
+            .addEventListener('keyup', (e) => {
+                const value = e.target.value
+                const filteredListResult = document.querySelector(
+                    '.filtered-list-result'
+                )
+                filteredListResult.innerHTML = ''
+                if (value.length > 2) {
+                    const result = foods.filtered(value)
+                    result.forEach((item) => {
+                        const list = document.createElement('li')
+                        list.setAttribute('class', 'p-3 w-full')
+                        list.innerHTML = item
+                        list.addEventListener('click', () => {
+                            document.querySelector('.search-box input').value =
+                                item
+                        })
+                        filteredListResult.append(list)
+                    })
+                }
+            })
+        document.querySelector('header').addEventListener('blur', () => {
+            document.querySelector('.filtered-list-result').innerHTML = ''
+        })
     }
 }
 customElements.define('home-page', HomePage)
