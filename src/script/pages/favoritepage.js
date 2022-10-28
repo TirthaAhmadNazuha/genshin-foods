@@ -1,3 +1,5 @@
+import router from '../router'
+
 class FavoritePage extends HTMLElement {
     constructor() {
         super()
@@ -10,7 +12,7 @@ class FavoritePage extends HTMLElement {
     }
     render() {
         this.innerHTML = `
-        <header class="bg-white py-4 px-6 dark:bg-black dark:text-white">
+        <header class="bg-white py-4 pt-10 px-6">
             <nav class="flex item-center">
                 <button class="back mr-4">
                     <span class="material-symbols-outlined"
@@ -21,11 +23,10 @@ class FavoritePage extends HTMLElement {
             </nav>
         </header>
         <main
-            class="bg-white px-4 dark:bg-black min-h-screen dark:text-white"
+            class="bg-white px-4 min-h-screen"
         >
             <div class="container w-full pb-28"></div>
         </main>
-        <bottom-nav />
         `
         const func = (data) => {
             if (data) {
@@ -39,6 +40,7 @@ class FavoritePage extends HTMLElement {
             }
         }
         func(JSON.parse(window.localStorage.getItem('favorite-item')))
+        this.querySelector('.back').onclick = () => router.onNavigate('/home')
     }
 }
 customElements.define('favorite-page', FavoritePage)

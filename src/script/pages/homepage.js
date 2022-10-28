@@ -1,4 +1,5 @@
 import foods from '../component/foods'
+import router from '../router'
 class HomePage extends HTMLElement {
     connectedCallback() {
         this.classList.add('HomePage')
@@ -6,8 +7,16 @@ class HomePage extends HTMLElement {
     }
     render() {
         this.innerHTML = `
-        <header class="bg-white px-4 pt-10 sticky dark:bg-black dark:text-white">
-            <h2>Find the food you want</h2>
+        <header class="bg-white px-4 pt-10 sticky">
+            <nav class="flex item-end justify-between">
+                <div>
+                    <span>Hello</span>
+                    <h3>Find food you want!</h3>
+                </div>
+                <button class="p-2">
+                    <span class="material-symbols-outlined text-[30px]">favorite</span>
+                </button>
+            </nav>
             <div class="search-bar w-full py-3 relative">
                 <form class="search-box w-full flex flex-nowrap gap-3">
                     <input
@@ -19,13 +28,12 @@ class HomePage extends HTMLElement {
                         <span class="material-symbols-outlined">search</span>
                     </button>
                 </form>
-                <ul class="filtered-list-result w-full bg-white dark:bg-black rounded-lg absolute top-[68px] left-0"></ul>
+                <ul class="filtered-list-result w-full bg-white rounded-lg absolute top-[68px] left-0"></ul>
             </div>
         </header>
-        <main class="bg-white px-4 dark:bg-black min-h-screen dark:text-white">
+        <main class="bg-white px-4 min-h-screen">
             <div class="container w-full pb-28"></div>
         </main>
-        <bottom-nav />
         `
         if (window.location.pathname == '/home') {
             const func = (data) => {
@@ -36,7 +44,7 @@ class HomePage extends HTMLElement {
                     .querySelector('.App main .container')
                     .append(foodListElem)
             }
-            if (Array.isArray(foods.all)) {
+            if (Array.isArray(foods.arr())) {
                 func(foods.arr(true))
             } else {
                 foods.all().then((data) => {
@@ -44,6 +52,8 @@ class HomePage extends HTMLElement {
                     func(foods.arr(true))
                 })
             }
+            this.querySelector('nav button').onclick = () =>
+                router.onNavigate('/favorite')
             window.scroll(0, 0)
             let windowSrcollBeforeValue = 0
             let topHeaderInScrolling = 0
@@ -51,7 +61,7 @@ class HomePage extends HTMLElement {
                 if (windowSrcollBeforeValue < window.scrollY) {
                     topHeaderInScrolling +=
                         window.scrollY - windowSrcollBeforeValue
-                    if (topHeaderInScrolling > 170) topHeaderInScrolling = 170
+                    if (topHeaderInScrolling > 184) topHeaderInScrolling = 184
                     document.querySelector(
                         'header'
                     ).style.top = `-${topHeaderInScrolling}px`
@@ -59,7 +69,7 @@ class HomePage extends HTMLElement {
                 } else if (windowSrcollBeforeValue > window.scrollY) {
                     topHeaderInScrolling +=
                         window.scrollY - windowSrcollBeforeValue
-                    if (topHeaderInScrolling < 96) topHeaderInScrolling = 96
+                    if (topHeaderInScrolling < 106) topHeaderInScrolling = 106
                     document.querySelector(
                         'header'
                     ).style.top = `-${topHeaderInScrolling}px`

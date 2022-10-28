@@ -48,14 +48,13 @@ const main = () => {
             document.querySelector('.row-item .con').append(imgRowItemIndex)
         }
         foods.key.food().forEach((key) => {
-            const arr = foods.all[0]
+            const arr = foods.all
             const elem = document.createElement('item-page')
             elem.item = arr[key]
             router.routes[`/${key}`] = elem
         })
         window.onscroll = () => {
             if (window.location.pathname == '/') {
-                console.log('window scroling')
                 const hero = document.querySelector('.hero')
                 if (scrollY > hero.clientHeight / 2) {
                     document.querySelector(

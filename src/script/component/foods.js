@@ -3,7 +3,7 @@ const foods = {
     all: async () => {
         try {
             const res = await axios.get(
-                'https://api.genshin.dev/consumables/all'
+                'https://api.genshin.dev/consumables/food'
             )
             return res.data
         } catch (error) {
@@ -11,8 +11,7 @@ const foods = {
         }
     },
     key: {
-        food: () => Object.keys(foods.all[0]),
-        item: () => Object.keys(foods.all[1]),
+        food: () => Object.keys(foods.all),
         randomFood: () =>
             foods.key
                 .food()
@@ -22,23 +21,19 @@ const foods = {
     },
     modifiy: () => {
         foods.key.food().forEach((item) => {
-            foods.all[0][
-                item
-            ].rarity = `star-rarity-${foods.all[0][item].rarity}`
-            foods.all[0][item].image = item
-            foods.all[0][item].favorite = false
+            foods.all[item].rarity = `star-rarity-${foods.all[item].rarity}`
+            foods.all[item].image = item
+            foods.all[item].favorite = false
         })
     },
     arr: (random = false) => {
-        const arr = []
+        let arr = []
         if (random) {
             foods.key.randomFood().forEach((key) => {
-                arr.push(foods.all[0][key])
+                arr.push(foods.all[key])
             })
         } else {
-            foods.key.food().forEach((key) => {
-                arr.push(foods.all[0][key])
-            })
+            arr = Object.values(foods.all)
         }
         return arr
     },

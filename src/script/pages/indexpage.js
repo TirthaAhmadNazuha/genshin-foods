@@ -27,7 +27,7 @@ class IndexPage extends HTMLElement {
                     </button>
                 </div>
                 <div
-                    class="image relative z-10 w-full flex mx-auto md:mr-0 md:w-1/2 md:h-screen"
+                    class="image relative z-10 w-full flex mx-auto md:mr-0 md:w-1/2 md:mt-[-8%] md:ml-[-3%] md:h-screen"
                 ></div>
             </div>
         </header>
