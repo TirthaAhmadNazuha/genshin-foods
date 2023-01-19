@@ -24,8 +24,7 @@ class FavoritePage extends HTMLElement {
             class="bg-white px-4 min-h-screen"
         >
             <div class="container w-full pb-28"></div>
-        </main>
-        `
+        </main>`
         const func = (data) => {
             if (data) {
                 const foodListElem = document.createElement('food-list')

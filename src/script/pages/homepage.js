@@ -32,9 +32,8 @@ class HomePage extends HTMLElement {
             </div>
         </header>
         <main class="bg-white px-4 min-h-screen">
-            <div class="container w-full pb-28"></div>
-        </main>
-        `
+            <div class="container w-full pb-28 flex items-center"></div>
+        </main>`
         const func = (data) => {
             const foodListElem = document.createElement('food-list')
             foodListElem.foods = data
@@ -58,9 +57,9 @@ class HomePage extends HTMLElement {
             if (windowSrcollBeforeValue < window.scrollY) {
                 topHeaderInScrolling += window.scrollY - windowSrcollBeforeValue
                 if (topHeaderInScrolling > 184) topHeaderInScrolling = 184
-                document.querySelector(
-                    'header'
-                ).style.top = `-${topHeaderInScrolling}px`
+                document.querySelector('header').style.top = `
+                -${topHeaderInScrolling}px
+`
                 windowSrcollBeforeValue = window.scrollY
             } else if (windowSrcollBeforeValue > window.scrollY) {
                 topHeaderInScrolling += window.scrollY - windowSrcollBeforeValue

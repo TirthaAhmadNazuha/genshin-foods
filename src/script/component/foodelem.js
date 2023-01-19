@@ -11,10 +11,9 @@ class FoodElem extends HTMLElement {
     render() {
         this.innerHTML = `
         <img src="https://api.genshin.dev/consumables/food/${this._food.image}" class="w-full" alt="">
-        <h3>${this._food.name}</h3>
-        `
+        <h3>${this._food.name}</h3>`
         this.addEventListener('click', () => {
-            router.onNavigate(`/${this._food.image}`)
+            router.onNavigate('/' + this._food.image)
         })
     }
 }

@@ -28,8 +28,7 @@ class ItemPage extends HTMLElement {
                     <p>${this._food.effect}</p>
                 </article>
             </div>
-        </div>
-        `
+        </div>`
         const saveFavoritem = (save = true) => {
             let favoriteItem = JSON.parse(
                 window.localStorage.getItem('favorite-item')

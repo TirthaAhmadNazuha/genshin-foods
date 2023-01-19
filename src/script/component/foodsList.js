@@ -9,7 +9,7 @@ class FoodsList extends HTMLElement {
     render() {
         this.setAttribute(
             'class',
-            ' grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-5 w-full box-border'
+            'mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-5 w-full box-border'
         )
         this.innerHTML = ''
         this._foods.forEach((food) => {

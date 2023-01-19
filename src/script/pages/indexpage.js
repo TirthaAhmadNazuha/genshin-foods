@@ -125,8 +125,7 @@ class IndexPage extends HTMLElement {
                     images is limited to general creatives.
                 </p>
             </div>
-        </footer>
-        `
+        </footer>`
         const NavImageLogo = document.createElement('img')
         NavImageLogo.src = logo
         NavImageLogo.style.height = '80px'
