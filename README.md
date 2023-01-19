@@ -1,2 +1,10 @@
 # Genshin Impact Foods
-Display decription for all foods on Genshin Impact
+Show decription for all foods of Genshin Impact
+
+## Authors
+
+- [@TirthaAhmadNazuha](https://www.github.com/TirthaAhmadNazuha)
+
+## Hosted in
+
+- [genshinfoods](https://genshinfoods.netlify.app)
